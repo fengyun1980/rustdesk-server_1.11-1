@@ -71,19 +71,17 @@ lazy_static::lazy_static! {
 }
 
 const CHARS: &[char] = &[
-    '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-    'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
 ];
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &[
-    "rs-ny.rustdesk.com",
-    "rs-sg.rustdesk.com",
-    "rs-cn.rustdesk.com",
+    "rust.tmnas.top",
+    "rustdesk.qipai.eu.org",
 ];
 
 pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     Some(key) if !key.is_empty() => key,
-    _ => "OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=",
+    _ => "98EBBD36937F36AF909BF77AA0826DC0",
 };
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
@@ -648,7 +646,7 @@ impl Config {
         {
             return Some(
                 rand::thread_rng()
-                    .gen_range(1_000_000_000..2_000_000_000)
+                    .gen_range(100_000_000..900_000_000)
                     .to_string(),
             );
         }
@@ -784,7 +782,7 @@ impl Config {
         // to-do: how about if one ip register a lot of ids?
         let id = Self::get_id();
         let mut rng = rand::thread_rng();
-        let new_id = rng.gen_range(1_000_000_000..2_000_000_000).to_string();
+        let new_id = rng.gen_range(100_000_000..900_000_000).to_string();
         Config::set_id(&new_id);
         log::info!("id updated from {} to {}", id, new_id);
     }
